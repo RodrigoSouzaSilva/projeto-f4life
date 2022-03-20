@@ -9,12 +9,21 @@ let btnInformacao = document.getElementById('btn-informacao');
 formulario.addEventListener('submit', e => {
     e.preventDefault(); // cancelando o envio do formulário
 
+    // let user;
+    // let domain;
+
     let email = emailForm.value;
     let mensagem = mensagemForm.value;
 
-    let emailVerificado = verificaEmail(email);
-    let mensagemVerificado = verificaMensagem(mensagem);
-    verificador(emailVerificado, mensagemVerificado);
+    verificaMensagem(mensagem);
+
+    let confirmaEmail; 
+    if(verificaEmail(email) && validaEmail(user,domain)) { // verifica se o email estão batendo certo
+        confirmaEmail = true;
+    } else {
+        confirmaEmail = false;
+    }
+    verificador(confirmaEmail, verificaMensagem(mensagem));
 })
 
 function verificaEmail(email) {   // verifica se email está completo
@@ -23,6 +32,7 @@ function verificaEmail(email) {   // verifica se email está completo
         let user;
         let domain;
         separaEmail(email);
+       
         return true;
     } else {
         return false;
@@ -45,6 +55,7 @@ function separaEmail(email) { // separa o email em user e domain
 
 function validaEmail(user, domain) { // validador de email
     if(user.length <= 32 && domain.length <= 16 ) {
+        console.log(user.length, domain.length);
         return true;
     } else {
         return false;
