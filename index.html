@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F4LIFE</title>
+
+    <!-- Folha de estilo CSS -->
+    <link rel="stylesheet" href="css/reset-css.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <script src="https://kit.fontawesome.com/51192232fa.js" crossorigin="anonymous"></script>
+    
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="img/logo-pequena.png" alt="">
+        </div>
+        <nav class="navegacao">
+            <ul>
+                <li><a href="#quem-somos">Quem somos</a></li>
+                <li><a href="#produtos">Produtos</a></li>
+                <li><a href="#fale-conosco">Fale Conosco</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="quem-somos">
+        <div class="sobre-quem-somos">
+            <div class="img-quem-somos">
+                <img src="img/quem-somos.jpg" alt="">
+            </div>
+            <div class="texto-quem-somos">
+                <div id="quem-somos" class="quem-somos-informacao">
+                    <p>
+                        <span>F4Life</span> é uma empresa de aluguéis de repúblicas para pessoas universitárias. 
+                    </p>
+                    <p>
+                        Similar aos modelos de Quinto Andar e Loft, 
+                        a empresa realiza reformas e prepara moradias 
+                        para recepção de pessoas universitárias em um ambiente específico 
+                        e otimizado para a vida de graduação.
+                    </p>
+                </div>
+                <div class="quem-somos-informacao-img">
+                    <img class="informativo" src="img/informativo.jpg" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="logo-maior">
+            <!-- LOGO PARALAX -->
+        </div>
+    </section>
+
+    <section class="compartihada">
+        <div class="sobre-compartilhada">
+            <div id="produtos" class="texto-compartilhada">
+                <p class="titulo">
+                    Moradia compartilhada, entenda o que é.
+                </p>
+                <p class="texto">
+                    Essa tão famosa moradia compartilhada é quando pessoas que não necessariamente são da mesma família resolvem dividir uma casa ou apartamento para compartilhar o espaço, as despesas, as tarefas domésticas e claro, é óbvio, bons momentos.
+                </p>
+            </div>
+            <div class="vantangens-compartilhada">
+                <p class="titulo">
+                    Vantagens nesse tipo de moradia
+                </p>
+                <ul class="lista">
+                    <li>Moradia compartilhada = responsabilidades compartilhadas</li>
+                    <li>Aprende a lidar com as diferenças entre pessoas</li>
+                    <li>Ajuda a viverem de forma colaborativa</li>
+                    <li>Desperdício de comida? Nunca mais!</li>
+                    <li>Você pode fazer novas amizades</li>
+                    <li>Custo do aluguel reduzido</li>
+                </ul>
+            </div>
+        </div>
+        <div class="img-compartilhada">
+            <img src="img/compartilhada.jpg" alt="">
+        </div>
+    </section>
+
+    <section class="kitnet">
+        <div class="sobre-kitnet">
+            <div class="texto-kitnet">
+                <p class="titulo">
+                    kitnet, entenda o que é.
+                </p>
+                <p class="texto">
+                    Como o próprio nome já sugere, kitnet deriva de uma expressão em inglês que significa cozinha pequena. E a ideia é essa mesmo: um cômodo que serve de quarto e sala ao mesmo tempo, banheiro separado e uma cozinha diminuta, geralmente separada apenas por um balcão.
+
+                </p>
+            </div>
+            <div class="vantangens-kitnet">
+                <p class="titulo">
+                    Vantagens nesse tipo de moradia
+                </p>
+                <ul class="lista">
+                    <li>Torna um morador mais consciente</li>
+                    <li>Menor o espaço, menor o aluguel</li>
+                    <li>Manutenção é mais barata</li>
+                    <li>Mais fácil de decorar</li>
+                    <li>Liberdade</li>
+                    <li>Aconchego</li>
+                </ul>
+            </div>
+        </div>
+        <div class="img-kitnet">
+            <img src="img/kitnet.jpg" alt="">
+        </div>
+    </section>
+
+    <section id="fale-conosco" class="fale-conosco">
+        <p class="titulo">
+            Fale conosco
+        </p>
+        <form id="formulario" action="">
+            <label for="email">Email:</label>
+            <input id="email" type="email" placeholder="Email@email.com">
+
+            <label for="mensagem">Mensagem:</label>
+            <textarea id="mensagem" cols="30" rows="10" placeholder="Sua mensagem aqui"></textarea>
+
+            <button id="btn-enviar" type="submit">Enviar</button>
+            <div id="confirmacao" class="esconde"></div>
+        </form>
+
+        <button id="btn-confirmacao" class="btn-confirmacao esconde" onclick="apagar()">fechar X</button>
+
+    </section>
+
+    <footer>
+        <div class="icone">
+            <div class="icone-texto">
+                <a href="https://twitter.com/" target="_blank"><i class="fa-brands fa-twitter-square fa-4x"></i></a>
+                <p>/f4life</p>
+            </div>
+            <div class="icone-texto">
+                <a href="https://www.facebook.com/" target="_blank"><i class="fa-brands fa-facebook-square fa-4x"></i></a>
+                <p>/f4life</p>
+            </div>
+            <div class="icone-texto">
+                <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram-square fa-4x"></i></a>
+                <p>/f4life</p>
+            </div>
+        </div>
+        <div class="servicos">
+            <ul>
+                <li><a href="#quem-somos">Quem somos</a></li>
+                <li><a href="#produtos">Produtos</a></li>
+                <li><a href="#fale-conosco">Fale conosco</a></li>
+            </ul>
+        </div>
+        <hr>
+        <div class="desenvolvido">Desenvolvido por: <a href="https://rodrigosouzasilva.github.io/web_site/" target="_blank">Rodrigo de Souza</a></div>
+    </footer>
+
+
+    <!-- Interação Javascript -->
+    <script src="js/main.js"></script>
+</body>
+</html>
