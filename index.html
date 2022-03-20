@@ -123,18 +123,18 @@
         <p class="titulo">
             Fale conosco
         </p>
-        <form id="formulario" action="">
+        <form id="formulario">
             <label for="email">Email:</label>
-            <input id="email" type="email" placeholder="Email@email.com">
+            <input id="email" type="email" placeholder="Email@email.com" required>
 
             <label for="mensagem">Mensagem:</label>
             <textarea id="mensagem" cols="30" rows="10" placeholder="Sua mensagem aqui"></textarea>
 
             <button id="btn-enviar" type="submit">Enviar</button>
-            <div id="confirmacao" class="esconde"></div>
         </form>
-
-        <button id="btn-confirmacao" class="btn-confirmacao esconde" onclick="apagar()">fechar X</button>
+        
+        <div id="informacao" class="esconde"></div>
+        <button id="btn-informacao" class="btn-informacao esconde" onclick="esconde()">fechar X</button>
 
     </section>
 
