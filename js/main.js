@@ -9,98 +9,122 @@ let btnInformacao = document.getElementById('btn-informacao');
 formulario.addEventListener('submit', e => {
     e.preventDefault(); // cancelando o envio do formulário
 
-    // let user;
-    // let domain;
-
     let email = emailForm.value;
     let mensagem = mensagemForm.value;
 
-    verificaMensagem(mensagem);
+    let user;
+    let domain;
 
-    let confirmaEmail; 
-    if(verificaEmail(email) && validaEmail(user,domain)) { // verifica se o email estão batendo certo
-        confirmaEmail = true;
-    } else {
-        confirmaEmail = false;
+    let verificadorEmail;
+    let verificadorMensagem;
+
+    const regExp1 = /[a-z]/;
+    const regExp2 = /[A-Z]/;
+    const regExp3 = /[0-9]/;
+    const regExp4 = /[.]/;
+    const regExp5 = /\.com+$/
+    // regExp1.test(user)
+
+    
+    verificaCom(email); // verifica se tem .com
+    verificaMensagem(mensagem); // verifica se tem mensagem
+    
+    verificador(verificadorEmail,verificadorMensagem); // verifica se todos são true
+    
+
+    function verificaCom(email) { 
+        if(regExp5.test(email)) {
+            verificadorEmail = true;
+            separaEmail(email); // separa @
+            validaUser(user);   // pegar user
+            validaDomain(domain); // pega domain
+        } else {
+            verificadorEmail = false;
+        }
     }
-    verificador(confirmaEmail, verificaMensagem(mensagem));
+    
+    function separaEmail(email) { // separa o @ do email
+        let separador = email.split('@');
+        user = separador[0];
+        domain = separador[1].slice(0, -4);
+    }
+
+    function validaUser(user) {  // valida usuario
+        let separaUser = user.split('');
+        if(separaUser.length <= 32) {
+            for(let i = 0; i < separaUser.length; i++) {
+                if(regExp1.test(separaUser[i]) || regExp2.test(separaUser[i]) || regExp3.test(separaUser[i]) || regExp4.test(separaUser[i])) {
+                    continue;
+                } else {
+                    verificadorEmail = false;
+                }
+            }
+        } else {
+            verificadorEmail = false;
+        }
+        
+    }
+
+    function validaDomain(domain) { // valida o dominio
+        let separaDomain = domain.split('');
+        if(separaDomain.length <= 16) {
+            for(let x = 0; x < separaDomain.length; x++) {
+                if(regExp1.test(separaDomain[x]) || regExp3.test(separaDomain[x])) {
+                    continue;
+                } else {
+                    verificadorEmail = false;
+                }
+            }
+        } else {
+            verificadorEmail = false;
+        }
+    }
+
+    function verificaMensagem(mensagem) { // verifica se tem mensagem
+        if(mensagem !== '') {
+            verificadorMensagem = true;
+        } else {
+            verificadorMensagem = false;
+        }
+    }
+
+    function verificador(email, mensagem) { // verifica quais inf. são verdadeira
+        if(email && mensagem) {
+            console.log('Aceito');
+            mostraCampo(`Obrigado pelo contato, ${user}!`, 'certo');
+            apagaClasse('certo')
+        } else if(email !== true) {
+            console.log('email invalido');
+            mostraCampo(' Endereço de mail inválido', 'errado');
+            apagaClasse('errado');
+        } else {
+            console.log('falta mensagem');
+            mostraCampo('Insira uma mensagem', 'atencao');
+            apagaClasse('atencao');
+        }
+    }
+
+    function mostraCampo(mensagem, classe) { // mostra campo informação
+        informacao.classList.remove('esconde');
+        informacao.innerHTML = mensagem;
+        informacao.classList.add(`${classe}`)
+        btnInformacao.classList.remove('esconde');
+    }
+
+    function apagaClasse(classe) { // esclui as classes que não e usada
+        let classes = ['certo', 'atencao', 'errado'];
+        for(let c = 0; c < classes.length; c++) {
+            if(classe === classes[c]) {
+                continue;
+            } else {
+                informacao.classList.remove(classes[c]);
+            }
+        }
+    }
+
 })
 
-function verificaEmail(email) {   // verifica se email está completo
-    let ultimoCampo = email.length; // pega o ultimo valor do email
-    if(email.indexOf('.com', ultimoCampo - 4) !== -1) {  // email certo, verifica se os 4 ultimos campos são .com
-        let user;
-        let domain;
-        separaEmail(email);
-       
-        return true;
-    } else {
-        return false;
-    }
-}
-
-function verificaMensagem(mensagem) { // verificador de mensagem
-    if(mensagem === '') {
-        return false;
-    } else {
-        return true;
-    }
-}
-
-function separaEmail(email) { // separa o email em user e domain
-    let emailSeparado = email.split('@');
-    user = emailSeparado[0];
-    domain = emailSeparado[1].slice(0, -4);
-}
-
-function validaEmail(user, domain) { // validador de email
-    if(user.length <= 32 && domain.length <= 16 ) {
-        console.log(user.length, domain.length);
-        return true;
-    } else {
-        return false;
-    }
-}
-
-function verificador(email, mensagem) {  // verifica se está tudo certo e mostra msg
-    if(email === true && mensagem === true) {
-        mostraCampo(`Obrigado pelo contato, ${user}`, 'certo');
-    }  else if (mensagem !== true) {
-        mostraCampo('Insira uma mensagem','atencao');
-    } else {
-        mostraCampo('Endereço de email inválido', 'errado');
-    }
-}
-
-function mostraCampo(mensagem, classe) { // abre o campo info
-    mostraMensagem(mensagem, classe);
-    mostraBtn();
-}
-
-function mostraMensagem(mensagem, classe) {  // mostra msg no campo info
-    informacao.innerHTML = `${mensagem}`;
-    informacao.classList.add(`${classe}`);
-    informacao.classList.remove('esconde');
-    excluiClasse(classe);   // exclui as classes adicionadas
-}
-
-function mostraBtn() { // mostra o btn de fechar
-    btnInformacao.classList.remove('esconde');
-}
-
-function esconde() { // esconde o btn de fechar e campo informação
+function esconde() { // apaga no campo da informação
     informacao.classList.add('esconde');
     btnInformacao.classList.add('esconde');
 }
-
-function excluiClasse(classe) { // função que exclui as classes
-    let classes = ['certo', 'atencao', 'errado'];
-    for(let i = 0; i < classes.length; i++) {
-        if(classes[i] === classe) {
-            continue;
-        } else {
-            informacao.classList.remove(`${classes[i]}`);
-        }
-    }
-}
-
