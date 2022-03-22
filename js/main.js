@@ -111,7 +111,7 @@ formulario.addEventListener('submit', e => {
         btnInformacao.classList.remove('esconde');
     }
 
-    function apagaClasse(classe) { // esclui as classes que não e usada
+    function apagaClasse(classe) { // exclui as classes que não e usada
         let classes = ['certo', 'atencao', 'errado'];
         for(let c = 0; c < classes.length; c++) {
             if(classe === classes[c]) {
